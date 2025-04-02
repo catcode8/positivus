@@ -1,0 +1,48 @@
+@use "../media" as *;
+@use "../mixins" as *;
+
+.partners {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 38px;
+
+    @include tablet {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      row-gap: 20px;
+    }
+
+    @include mobile-s {
+      --heroPartnersWidthOffsetX: 60px;
+
+      column-gap: 0;
+      width: calc(100vw + var(--heroPartnersWidthOffsetX) * 2);
+      margin-left: calc(
+        (var(--heroPartnersWidthOffsetX) + var(--container-padding-x))
+        * -1
+      );
+    }
+  }
+
+  &__item {
+    @include tablet {
+      display: flex;
+      justify-content: center;
+    }
+    
+    @include mobile-s {
+      justify-content: start;
+
+      &:nth-child(-n + 3) {
+        justify-content: end;
+      }
+    }
+  }
+
+  &__img {
+    display: block;
+    filter: grayscale(1);
+  }
+
+}
